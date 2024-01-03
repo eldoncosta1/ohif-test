@@ -1,10 +1,10 @@
-import { hotkeys, classes } from '@ohif/core';
-import toolbarButtons from './toolbarButtons.js';
+import { classes, hotkeys } from '@ohif/core';
+import i18n from 'i18next';
 import { id } from './id.js';
 import initToolGroups, { toolGroupIds } from './initToolGroups.js';
+import toolbarButtons from './toolbarButtons.js';
 import setCrosshairsConfiguration from './utils/setCrosshairsConfiguration.js';
 import setFusionActiveVolume from './utils/setFusionActiveVolume.js';
-import i18n from 'i18next';
 
 const { MetadataProvider } = classes;
 

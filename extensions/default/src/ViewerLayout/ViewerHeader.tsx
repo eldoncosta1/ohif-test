@@ -1,11 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
-import { ErrorBoundary, UserPreferences, AboutModal, Header, useModal } from '@ohif/ui';
-import i18n from '@ohif/i18n';
 import { hotkeys } from '@ohif/core';
+import i18n from '@ohif/i18n';
+import { AboutModal, ErrorBoundary, Header, UserPreferences, useModal } from '@ohif/ui';
 import { useAppConfig } from '@state';
 import Toolbar from '../Toolbar/Toolbar';
 
@@ -47,6 +47,11 @@ function ViewerHeader({ hotkeysManager, extensionManager, servicesManager }) {
   const commitHash = process.env.COMMIT_HASH;
 
   const menuOptions = [
+    {
+      title: 'New Item',
+      icon: 'info',
+      onClick: () => navigate('/newpage'),
+    },
     {
       title: t('Header:About'),
       icon: 'info',

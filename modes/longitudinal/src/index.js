@@ -1,10 +1,10 @@
 import { hotkeys } from '@ohif/core';
-import toolbarButtons from './toolbarButtons';
+import i18n from 'i18next';
 import { id } from './id';
 import initToolGroups from './initToolGroups';
 import moreTools from './moreTools';
 import moreToolsMpr from './moreToolsMpr';
-import i18n from 'i18next';
+import toolbarButtons from './toolbarButtons';
 
 // Allow this mode by excluding non-imaging modalities such as SR, SEG
 // Also, SM is not a simple imaging modalities, so exclude it.
@@ -122,21 +122,21 @@ function modeFactory({ modeConfiguration }) {
       toolbarService.init(extensionManager);
       toolbarService.addButtons([...toolbarButtons, ...moreTools, ...moreToolsMpr]);
       toolbarService.createButtonSection(DEFAULT_TOOL_GROUP_ID, [
-        'MeasurementTools',
         'Zoom',
+        'test',
         'WindowLevel',
         'Pan',
-        'Capture',
+        // 'Capture',
         'Layout',
         'MPR',
         'MoreTools',
       ]);
       toolbarService.createButtonSection(MPR_TOOL_GROUP_ID, [
-        'MeasurementTools',
         'Zoom',
+        'test',
         'WindowLevel',
         'Pan',
-        'Capture',
+        // 'Capture',
         'Layout',
         'MPR',
         'Crosshairs',

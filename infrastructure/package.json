@@ -1,0 +1,21 @@
+{
+  "name": "infrastructure",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "prisma:migrate:dev": "yarn prisma migrate dev --schema ./database/schema.prisma",
+    "prisma:generate": "yarn prisma generate --schema ./database/schema.prisma",
+    "prisma:studio": "yarn prisma studio --schema ./database/schema.prisma"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.7.1",
+    "prisma": "^5.7.1",
+    "tsyringe": "^4.8.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "typescript": "^5.3.3"
+  }
+}

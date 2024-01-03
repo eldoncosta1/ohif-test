@@ -1,26 +1,26 @@
 import {
-  getEnabledElement,
+  BaseVolumeViewport,
+  Types as CoreTypes,
   StackViewport,
   VolumeViewport,
   utilities as csUtils,
-  Types as CoreTypes,
-  BaseVolumeViewport,
+  getEnabledElement,
 } from '@cornerstonejs/core';
 import {
-  ToolGroupManager,
   Enums,
-  utilities as cstUtils,
   ReferenceLinesTool,
+  ToolGroupManager,
+  utilities as cstUtils,
 } from '@cornerstonejs/tools';
 import { Types as OhifTypes } from '@ohif/core';
-import { vec3, mat4 } from 'gl-matrix';
+import { mat4, vec3 } from 'gl-matrix';
 
+import { CornerstoneServices } from './types';
 import CornerstoneViewportDownloadForm from './utils/CornerstoneViewportDownloadForm';
 import callInputDialog from './utils/callInputDialog';
-import toggleStackImageSync from './utils/stackSync/toggleStackImageSync';
-import { getFirstAnnotationSelected } from './utils/measurementServiceMappings/utils/selection';
 import getActiveViewportEnabledElement from './utils/getActiveViewportEnabledElement';
-import { CornerstoneServices } from './types';
+import { getFirstAnnotationSelected } from './utils/measurementServiceMappings/utils/selection';
+import toggleStackImageSync from './utils/stackSync/toggleStackImageSync';
 
 function commandsModule({
   servicesManager,
@@ -608,6 +608,14 @@ function commandsModule({
         }
       });
     },
+
+    testFn: async title => {
+      await Promise.resolve(
+        setTimeout(() => {
+          console.log(title);
+        }, 2000)
+      );
+    },
   };
 
   const definitions = {
@@ -646,6 +654,10 @@ function commandsModule({
 
     setWindowLevel: {
       commandFn: actions.setWindowLevel,
+    },
+    testFn: {
+      commandFn: actions.testFn,
+      options: {},
     },
     toolbarServiceRecordInteraction: {
       commandFn: actions.toolbarServiceRecordInteraction,

@@ -1,17 +1,18 @@
-import React from 'react';
-import { Routes, Route } from 'react-router-dom';
 import { ErrorBoundary } from '@ohif/ui';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
 
 // Route Components
-import DataSourceWrapper from './DataSourceWrapper';
-import WorkList from './WorkList';
-import Local from './Local';
-import Debug from './Debug';
-import NotFound from './NotFound';
-import buildModeRoutes from './buildModeRoutes';
-import PrivateRoute from './PrivateRoute';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import DataSourceWrapper from './DataSourceWrapper';
+import Debug from './Debug';
+import Local from './Local';
+import NewPage from './NewPage';
+import NotFound from './NotFound';
+import PrivateRoute from './PrivateRoute';
+import WorkList from './WorkList';
+import buildModeRoutes from './buildModeRoutes';
 
 const NotFoundServer = ({
   message = 'Unable to query for studies at this time. Check your data source configuration or network connection',
@@ -54,6 +55,10 @@ NotFoundStudy.propTypes = {
 
 // TODO: Include "routes" debug route if dev build
 const bakedInRoutes = [
+  {
+    path: '/newpage',
+    children: NewPage,
+  },
   {
     path: '/notfoundserver',
     children: NotFoundServer,

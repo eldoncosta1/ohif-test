@@ -1,33 +1,5 @@
-// https://babeljs.io/docs/en/options#babelrcroots
-const { extendDefaultPlugins } = require('svgo');
-
 module.exports = {
-  babelrcRoots: ['./platform/*', './extensions/*', './modes/*', './infrastructure/*'],
-  presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
-  plugins: [
-    [
-      'inline-react-svg',
-      {
-        svgo: {
-          plugins: [
-            {
-              name: 'preset-default',
-              params: {
-                overrides: {
-                  removeViewBox: false,
-                },
-              },
-            },
-          ],
-        },
-      },
-    ],
-    ['@babel/plugin-proposal-class-properties', { loose: true }],
-    '@babel/plugin-transform-typescript',
-    ['@babel/plugin-proposal-private-property-in-object', { loose: true }],
-    ['@babel/plugin-proposal-private-methods', { loose: true }],
-    '@babel/plugin-transform-class-static-block',
-  ],
+  plugins: ['inline-react-svg', '@babel/plugin-proposal-class-properties'],
   env: {
     test: {
       presets: [
@@ -38,17 +10,15 @@ module.exports = {
             modules: 'commonjs',
             debug: false,
           },
+          '@babel/preset-typescript',
         ],
         '@babel/preset-react',
-        '@babel/preset-typescript',
       ],
       plugins: [
         '@babel/plugin-proposal-object-rest-spread',
         '@babel/plugin-syntax-dynamic-import',
         '@babel/plugin-transform-regenerator',
-        '@babel/transform-destructuring',
         '@babel/plugin-transform-runtime',
-        '@babel/plugin-transform-typescript',
       ],
     },
     production: {

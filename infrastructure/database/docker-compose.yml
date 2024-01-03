@@ -1,0 +1,12 @@
+version: '3.3'
+
+services:
+  database:
+    container_name: ohif_database
+    platform: linux/x86_64
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ohif20
+      MYSQL_DATABASE: ohif
+    ports:
+      - '3306:3306'

@@ -135,11 +135,13 @@ module.exports = (env, argv, { SRC_DIR, ENTRY }) => {
           'dicom-microscopy-viewer/dist/dynamic-import/dicomMicroscopyViewer.min.js',
         '@cornerstonejs/dicom-image-loader':
           '@cornerstonejs/dicom-image-loader/dist/dynamic-import/cornerstoneDICOMImageLoader.min.js',
+        '@infra': path.resolve(__dirname, '../infrastructure'),
       },
       // Which directories to search when resolving modules
       modules: [
         // Modules specific to this package
         path.resolve(__dirname, '../node_modules'),
+        path.resolve(__dirname, '../infrastructure/node_modules'),
         // Hoisted Yarn Workspace Modules
         path.resolve(__dirname, '../../../node_modules'),
         path.resolve(__dirname, '../platform/app/node_modules'),

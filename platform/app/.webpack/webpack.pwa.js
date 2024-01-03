@@ -69,6 +69,14 @@ module.exports = (env, argv) => {
         // Hoisted Yarn Workspace Modules
         path.resolve(__dirname, '../../../node_modules'),
         SRC_DIR,
+        path.resolve(
+          __dirname,
+          '/home/eldoncosta/workspace/development/Viewers/modes/test-mode/node_modules'
+        ),
+        path.resolve(
+          __dirname,
+          '/home/eldoncosta/workspace/development/Viewers/modes/longitudinal/node_modules'
+        ),
       ],
     },
     plugins: [

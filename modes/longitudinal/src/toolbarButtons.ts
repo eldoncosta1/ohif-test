@@ -1,14 +1,16 @@
 // TODO: torn, can either bake this here; or have to create a whole new button type
 // Only ways that you can pass in a custom React component for render :l
+import { defaults, ToolbarService } from '@ohif/core';
+import type { Button } from '@ohif/core/types';
 import {
   // ExpandableToolbarButton,
   // ListMenu,
   WindowLevelMenuItem,
 } from '@ohif/ui';
-import { defaults, ToolbarService } from '@ohif/core';
-import type { Button } from '@ohif/core/types';
 
 const { windowLevelPresets } = defaults;
+
+import { illnessType } from '@infra/schemas';
 
 /**
  *
@@ -34,6 +36,18 @@ function _createWwwcPreset(preset, title, subtitle) {
   };
 }
 
+function _setIllness(name) {
+  return {
+    id: '13289c5c-58d2-43a9-bbe6-256419282f6e',
+    type: 'action',
+    commandName: 'testFn',
+    commandOptions: {
+      name,
+    },
+    context: 'CORNERSTONE',
+  };
+}
+
 const toolGroupIds = ['default', 'mpr', 'SRToolGroup'];
 
 /**
@@ -56,160 +70,207 @@ function _createSetToolActiveCommands(toolName) {
 
 const toolbarButtons: Button[] = [
   // Measurement
+  // {
+  //   id: 'MeasurementTools',
+  //   type: 'ohif.splitButton',
+  //   props: {
+  //     groupId: 'MeasurementTools',
+  //     isRadio: true, // ?
+  //     // Switch?
+  //     primary: ToolbarService._createToolButton(
+  //       'Length',
+  //       'tool-length',
+  //       'Length',
+  //       [
+  //         {
+  //           commandName: 'setToolActive',
+  //           commandOptions: {
+  //             toolName: 'Length',
+  //           },
+  //           context: 'CORNERSTONE',
+  //         },
+  //         {
+  //           commandName: 'setToolActive',
+  //           commandOptions: {
+  //             toolName: 'SRLength',
+  //             toolGroupId: 'SRToolGroup',
+  //           },
+  //           // we can use the setToolActive command for this from Cornerstone commandsModule
+  //           context: 'CORNERSTONE',
+  //         },
+  //       ],
+  //       'Length'
+  //     ),
+  //     secondary: {
+  //       icon: 'chevron-down',
+  //       label: '',
+  //       isActive: true,
+  //       tooltip: 'More Measure Tools',
+  //     },
+  //     items: [
+  //       ToolbarService._createToolButton(
+  //         'Length',
+  //         'tool-length',
+  //         'Length',
+  //         [
+  //           {
+  //             commandName: 'setToolActive',
+  //             commandOptions: {
+  //               toolName: 'Length',
+  //             },
+  //             context: 'CORNERSTONE',
+  //           },
+  //           {
+  //             commandName: 'setToolActive',
+  //             commandOptions: {
+  //               toolName: 'SRLength',
+  //               toolGroupId: 'SRToolGroup',
+  //             },
+  //             // we can use the setToolActive command for this from Cornerstone commandsModule
+  //             context: 'CORNERSTONE',
+  //           },
+  //         ],
+  //         'Length Tool'
+  //       ),
+  //       ToolbarService._createToolButton(
+  //         'Bidirectional',
+  //         'tool-bidirectional',
+  //         'Bidirectional',
+  //         [
+  //           {
+  //             commandName: 'setToolActive',
+  //             commandOptions: {
+  //               toolName: 'Bidirectional',
+  //             },
+  //             context: 'CORNERSTONE',
+  //           },
+  //           {
+  //             commandName: 'setToolActive',
+  //             commandOptions: {
+  //               toolName: 'SRBidirectional',
+  //               toolGroupId: 'SRToolGroup',
+  //             },
+  //             context: 'CORNERSTONE',
+  //           },
+  //         ],
+  //         'Bidirectional Tool'
+  //       ),
+  //       ToolbarService._createToolButton(
+  //         'ArrowAnnotate',
+  //         'tool-annotate',
+  //         'Annotation',
+  //         [
+  //           {
+  //             commandName: 'setToolActive',
+  //             commandOptions: {
+  //               toolName: 'ArrowAnnotate',
+  //             },
+  //             context: 'CORNERSTONE',
+  //           },
+  //           {
+  //             commandName: 'setToolActive',
+  //             commandOptions: {
+  //               toolName: 'SRArrowAnnotate',
+  //               toolGroupId: 'SRToolGroup',
+  //             },
+  //             context: 'CORNERSTONE',
+  //           },
+  //         ],
+  //         'Arrow Annotate'
+  //       ),
+  //       ToolbarService._createToolButton(
+  //         'EllipticalROI',
+  //         'tool-elipse',
+  //         'Ellipse',
+  //         [
+  //           {
+  //             commandName: 'setToolActive',
+  //             commandOptions: {
+  //               toolName: 'EllipticalROI',
+  //             },
+  //             context: 'CORNERSTONE',
+  //           },
+  //           {
+  //             commandName: 'setToolActive',
+  //             commandOptions: {
+  //               toolName: 'SREllipticalROI',
+  //               toolGroupId: 'SRToolGroup',
+  //             },
+  //             context: 'CORNERSTONE',
+  //           },
+  //         ],
+  //         'Ellipse Tool'
+  //       ),
+  //       ToolbarService._createToolButton(
+  //         'CircleROI',
+  //         'tool-circle',
+  //         'Circle',
+  //         [
+  //           {
+  //             commandName: 'setToolActive',
+  //             commandOptions: {
+  //               toolName: 'CircleROI',
+  //             },
+  //             context: 'CORNERSTONE',
+  //           },
+  //           {
+  //             commandName: 'setToolActive',
+  //             commandOptions: {
+  //               toolName: 'SRCircleROI',
+  //               toolGroupId: 'SRToolGroup',
+  //             },
+  //             context: 'CORNERSTONE',
+  //           },
+  //         ],
+  //         'Circle Tool'
+  //       ),
+  //     ],
+  //   },
+  // },
   {
-    id: 'MeasurementTools',
+    id: 'test',
     type: 'ohif.splitButton',
     props: {
       groupId: 'MeasurementTools',
-      isRadio: true, // ?
-      // Switch?
-      primary: ToolbarService._createToolButton(
-        'Length',
-        'tool-length',
-        'Length',
-        [
-          {
-            commandName: 'setToolActive',
-            commandOptions: {
-              toolName: 'Length',
-            },
-            context: 'CORNERSTONE',
-          },
-          {
-            commandName: 'setToolActive',
-            commandOptions: {
-              toolName: 'SRLength',
-              toolGroupId: 'SRToolGroup',
-            },
-            // we can use the setToolActive command for this from Cornerstone commandsModule
-            context: 'CORNERSTONE',
-          },
-        ],
-        'Length'
-      ),
+      isRadio: true,
+      primary: {
+        id: 'Length',
+        icon: 'settings',
+        label: 'Doença',
+        type: 'tool',
+        tooltip: 'Doença',
+      },
       secondary: {
         icon: 'chevron-down',
         label: '',
         isActive: true,
-        tooltip: 'More Measure Tools',
+        tooltip: 'Tipo de doença',
       },
       items: [
-        ToolbarService._createToolButton(
-          'Length',
-          'tool-length',
-          'Length',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'Length',
-              },
-              context: 'CORNERSTONE',
-            },
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'SRLength',
-                toolGroupId: 'SRToolGroup',
-              },
-              // we can use the setToolActive command for this from Cornerstone commandsModule
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Length Tool'
-        ),
-        ToolbarService._createToolButton(
-          'Bidirectional',
-          'tool-bidirectional',
-          'Bidirectional',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'Bidirectional',
-              },
-              context: 'CORNERSTONE',
-            },
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'SRBidirectional',
-                toolGroupId: 'SRToolGroup',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Bidirectional Tool'
-        ),
-        ToolbarService._createToolButton(
-          'ArrowAnnotate',
-          'tool-annotate',
-          'Annotation',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'ArrowAnnotate',
-              },
-              context: 'CORNERSTONE',
-            },
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'SRArrowAnnotate',
-                toolGroupId: 'SRToolGroup',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Arrow Annotate'
-        ),
-        ToolbarService._createToolButton(
-          'EllipticalROI',
-          'tool-elipse',
-          'Ellipse',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'EllipticalROI',
-              },
-              context: 'CORNERSTONE',
-            },
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'SREllipticalROI',
-                toolGroupId: 'SRToolGroup',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Ellipse Tool'
-        ),
-        ToolbarService._createToolButton(
-          'CircleROI',
-          'tool-circle',
-          'Circle',
-          [
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'CircleROI',
-              },
-              context: 'CORNERSTONE',
-            },
-            {
-              commandName: 'setToolActive',
-              commandOptions: {
-                toolName: 'SRCircleROI',
-                toolGroupId: 'SRToolGroup',
-              },
-              context: 'CORNERSTONE',
-            },
-          ],
-          'Circle Tool'
-        ),
+        {
+          id: 'no-illness',
+          icon: 'info',
+          label: 'Sem doença',
+          type: 'tool',
+          commands: [_setIllness(illnessType[0])],
+          tooltip: 'Sem doença',
+        },
+        {
+          id: 'mild-illness',
+          icon: 'info',
+          label: 'Doença leve',
+          type: 'tool',
+          commands: [_setIllness(illnessType[1])],
+          tooltip: 'Doença leve',
+        },
+        {
+          id: 'advanced-illness',
+          icon: 'info',
+          label: 'Doença avançada',
+          type: 'tool',
+          commands: [_setIllness(illnessType[2])],
+          tooltip: 'Doença avançada',
+        },
       ],
     },
   },
@@ -273,22 +334,22 @@ const toolbarButtons: Button[] = [
       commands: _createSetToolActiveCommands('Pan'),
     },
   },
-  {
-    id: 'Capture',
-    type: 'ohif.action',
-    props: {
-      icon: 'tool-capture',
-      label: 'Capture',
-      type: 'action',
-      commands: [
-        {
-          commandName: 'showDownloadViewportModal',
-          commandOptions: {},
-          context: 'CORNERSTONE',
-        },
-      ],
-    },
-  },
+  // {
+  //   id: 'Capture',
+  //   type: 'ohif.action',
+  //   props: {
+  //     icon: 'tool-capture',
+  //     label: 'Capture',
+  //     type: 'action',
+  //     commands: [
+  //       {
+  //         commandName: 'showDownloadViewportModal',
+  //         commandOptions: {},
+  //         context: 'CORNERSTONE',
+  //       },
+  //     ],
+  //   },
+  // },
   {
     id: 'Layout',
     type: 'ohif.layoutSelector',
