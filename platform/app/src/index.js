@@ -1,6 +1,7 @@
 /**
  * Entry point for development and production PWA builds.
  */
+import 'reflect-metadata';
 import 'regenerator-runtime/runtime';
 import App from './App';
 import React from 'react';

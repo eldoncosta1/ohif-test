@@ -1,5 +1,6 @@
-import { IllnessDTO } from 'schemas';
+import { IllnessDTO } from '../../schemas';
 
+export const IIllnessRepository = 'IIllnessRepository';
 export interface IIllnessRepository {
-  create(illnessType: IllnessDTO): Promise<void>;
+  save(illnessType: IllnessDTO): Promise<void>;
 }

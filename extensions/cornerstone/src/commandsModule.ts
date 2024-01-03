@@ -1,10 +1,10 @@
 import {
   BaseVolumeViewport,
-  Types as CoreTypes,
-  StackViewport,
-  VolumeViewport,
-  utilities as csUtils,
   getEnabledElement,
+  StackViewport,
+  Types as CoreTypes,
+  utilities as csUtils,
+  VolumeViewport,
 } from '@cornerstonejs/core';
 import {
   Enums,
@@ -14,10 +14,10 @@ import {
 } from '@cornerstonejs/tools';
 import { Types as OhifTypes } from '@ohif/core';
 import { mat4, vec3 } from 'gl-matrix';
-
+import { api } from '../../../platform/app/src/services/api';
 import { CornerstoneServices } from './types';
-import CornerstoneViewportDownloadForm from './utils/CornerstoneViewportDownloadForm';
 import callInputDialog from './utils/callInputDialog';
+import CornerstoneViewportDownloadForm from './utils/CornerstoneViewportDownloadForm';
 import getActiveViewportEnabledElement from './utils/getActiveViewportEnabledElement';
 import { getFirstAnnotationSelected } from './utils/measurementServiceMappings/utils/selection';
 import toggleStackImageSync from './utils/stackSync/toggleStackImageSync';
@@ -609,12 +609,14 @@ function commandsModule({
       });
     },
 
-    testFn: async title => {
-      await Promise.resolve(
-        setTimeout(() => {
-          console.log(title);
-        }, 2000)
-      );
+    testFn: async ({ name }) => {
+      try {
+        await api.post('illness', {
+          illnessType: name,
+        });
+      } catch (err) {
+        console.log(err);
+      }
     },
   };
 
