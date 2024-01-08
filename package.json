@@ -6,7 +6,7 @@
       "platform/*",
       "extensions/*",
       "modes/*",
-      "infrastructure/*"
+      "infrastructure"
     ],
     "nohoist": [
       "**/html-minifier-terser"
@@ -54,7 +54,8 @@
     "lerna:cache": "./netlify-lerna-cache.sh",
     "lerna:restore": "./netlify-lerna-restore.sh",
     "lerna:customVersion": "node version.mjs",
-    "link-list": "npm ls --depth=0 --link=true"
+    "link-list": "npm ls --depth=0 --link=true",
+    "backend:dev": "lerna run backend:dev --stream"
   },
   "dependencies": {
     "@babel/plugin-syntax-decorators": "^7.23.3",

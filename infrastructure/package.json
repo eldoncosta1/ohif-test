@@ -7,7 +7,7 @@
     "seed": "ts-node ./database/seeds/seed.ts"
   },
   "scripts": {
-    "dev": "tsnd --watch --inspect -r tsconfig-paths/register --transpile-only --ignore-watch node_modules --exit-child --respawn index.ts",
+    "backend:dev": "tsnd --watch --inspect -r tsconfig-paths/register --transpile-only --ignore-watch node_modules --exit-child --respawn index.ts",
     "prisma:migrate:dev": "yarn prisma migrate dev --schema ./database/schema.prisma",
     "prisma:generate": "yarn prisma generate --schema ./database/schema.prisma",
     "prisma:studio": "yarn prisma studio --schema ./database/schema.prisma",
